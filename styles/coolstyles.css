@@ -241,3 +241,112 @@ footer p{
 	}
 }
 
+
+/******************************************
+		Slider
+******************************************/
+
+.slider{
+	margin:30px auto 0;
+	/* three properties in margin mean top, left-right, bottom */
+	width:80%;
+	/* text-align will center images as well as text */
+	text-align:center;
+	/* to hide anything outside the slider, use overflow:hidden */
+	overflow:hidden;
+}
+
+.slideback{
+	position:relative;
+	/* by giving this element position:relative, it will contain the absolutely
+	positioned slider (below) */
+}
+
+/* the > is the direct child selector, which selects only the elements which are 
+children, not grandchildren or great-grandchildren */
+.slideback > img{
+	width:100%;
+}
+
+.slideholder{
+	/* position:absolute is relative to the browser window
+	OR to the last element with a position property */
+	position:absolute;
+	top:0;
+	width:300%;
+	height:100%;
+	display:flex;
+	/* add an animation on change */
+	transition: margin 1s;
+}
+
+.imgslide{
+	/* flex-grow will allow objects to expand and take up the whole width */
+	flex-grow:1;
+	height:100%;
+}
+
+.imgslide img{
+	margin-top:26%;
+	width:26%;
+}
+
+/* style radio buttons based on whether they are checked... 
+The ~ is the "after" selector, targeting an element that comes after another
+(in HTML order) */
+#slide1:checked ~ .slideback .slideholder{ margin-left:0; }
+#slide2:checked ~ .slideback .slideholder{ margin-left:-100%; }
+#slide3:checked ~ .slideback .slideholder{ margin-left:-200%; }
+
+
+/******************************************
+		Labels
+******************************************/
+label{
+	/* inline-block makes these behave like images: they can have a width
+	and a height, but they will sit horizontally */
+	display:inline-block;
+	width:100px;
+	padding: 5px 0;
+	text-align:center;
+	margin:0 15px;
+	/* hsla (hue, saturation, luminosity, alpha) is a way of setting colours
+	that makes it easy to get darker and lighter colours of the same hue */
+	border:2px solid hsla(101,100%,30%,1.00);
+	background:hsla(101,100%,80%,1.00);
+	font-size:24px;
+	border-radius:10px;
+
+	/* add an animation so the colour change on hover looks softer */
+	transition: background 0.5s, transform 0.15s;
+}
+
+label:hover{
+	background:hsla(101,100%,40%,1.00);
+	/*change the cursor to a pointer, so it looks like a button*/
+	cursor:pointer;
+}
+
+label:active{
+	transform: scale(0.9);
+}
+
+/* hide the radio buttons - use the attribute selector to get only the radio buttons */
+input[type="radio"]{
+	display:none;
+}
+
+/* use the sibling selector ~ to grab one of the labels based on which radio button
+ is checked */
+#slide1:checked ~ label:nth-of-type(1){ 
+	background:hsla(101,100%,50%,1.00); 
+	font-weight:bold; 
+}
+#slide2:checked ~ label:nth-of-type(2){ 
+	background:hsla(101,100%,50%,1.00); 
+	font-weight:bold; 
+}
+#slide3:checked ~ label:nth-of-type(3){ 
+	background:hsla(101,100%,50%,1.00); 
+	font-weight:bold; 
+}
