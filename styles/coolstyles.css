@@ -96,6 +96,16 @@ footer p{
 	background:lightblue;
 }
 
+.shape1:nth-child(1){
+	/* call the pendulum animation by name */
+	animation-name:pendulum;
+	animation-duration:3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	/* you can change the direction of the animation, normal, reverse, or alternate */
+	animation-direction: alternate;
+}
+
 .shape1:nth-child(2){
 	/* use transform to rotate the element 
 	rotation is measured in degrees, up to 360 */
@@ -125,6 +135,9 @@ footer p{
 	/* do a compound transition, different timings for different properties 
 	1000ms = 1s*/
 	transition: background-color 2s, transform 50ms;
+
+	/* try the complex jump... animation short-hand lets you enter all properties */
+	animation: complex-jump 3s ease-in-out infinite;
 }
 
 .shape1:nth-child(3):hover{
@@ -144,6 +157,13 @@ footer p{
 	one value skews horizontal and vertical
 	two values skews horizontal then vertical
 	you can also use skewX() or skewY() */
+
+	/* call the jump animation with different properties */
+	animation-name:jump;
+	animation-duration:750ms;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-delay: 1s; /* will make the animation wait to start */
 }
 
 .shape1:nth-child(5){
@@ -151,9 +171,73 @@ footer p{
 	transform: rotate(20deg) scale(0.8) skew(10deg, 40deg);
 
 	transition: all 2s;
+
+	/* if we want to apply the animation, call it by name... 
+	animation-name and animation-duration are required properties */
+	animation-name: jump;
+	animation-duration: 2s;
+	/* there are optional animation properties... */
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite; /* or set a number of times */
 }
 
 .shape1:nth-child(5):hover{
 	transform: rotate(270deg) scale(2.3) skew(50deg, -25deg);
+}
+
+
+/******************************************
+		Animations
+******************************************/
+
+/* @keyframes defines an animation - inside you set up how the animation will play */
+@keyframes jump{
+	/* keyframes are points in an animation - they are defined by percentage 
+	in order to make this work, you have to call it by name on an element */
+	50% {
+		transform: translate(0, -100px);
+	}
+}
+
+@keyframes pendulum{
+	/* use 0%,100% to apply a property to the whole animation */
+	0%,
+	100%{
+		/* transform-origin sets the anchor point for the object to move */
+		transform-origin: 0 -100px;
+	}
+
+	0%{
+		transform: rotate(77deg);
+	}
+	100%{
+		transform: rotate(-45deg);
+	}
+}
+
+@keyframes complex-jump{
+	/* you can add as many keyframes as you need, with all different properties */
+
+	5%{
+		transform: scaleY(0.9);
+		transform: translateY(0);
+	}
+	10%{
+		transform: scaleY(1.1);
+	}
+	50%{
+		transform: scaleY(1);
+		transform: translateY(-100px);
+	}
+	90%{
+		transform: scaleY(1);
+	}
+	95%{
+		transform: scaleY(0.9);
+		transform: translateY(0);
+	}
+	100%{
+		transform: scaleY(1);
+	}
 }
 
