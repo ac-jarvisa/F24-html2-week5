@@ -100,6 +100,17 @@ footer p{
 	/* use transform to rotate the element 
 	rotation is measured in degrees, up to 360 */
 	transform: rotate(45deg);
+
+	/* transition tells an element to animate a change */
+	transition: all 2s;
+	/* transition is a shorthand property - at minimum, you need something to transition
+	 and a time for the animation
+	 "all" means any change will be animated */
+}
+
+.shape1:nth-child(2):hover{
+	/* change the rotation on hover */
+	transform: rotate(200deg);
 }
 
 .shape1:nth-child(3){
@@ -110,6 +121,18 @@ footer p{
 	transform: scale(0.5, 0.75);
 	/* one value scales width and height
 	two values scales width then height */
+
+	/* do a compound transition, different timings for different properties 
+	1000ms = 1s*/
+	transition: background-color 2s, transform 50ms;
+}
+
+.shape1:nth-child(3):hover{
+	background-color:red;
+}
+
+.shape1:nth-child(3):active{
+	transform: scale(4, 4);
 }
 
 .shape1:nth-child(4){
@@ -121,5 +144,16 @@ footer p{
 	one value skews horizontal and vertical
 	two values skews horizontal then vertical
 	you can also use skewX() or skewY() */
+}
+
+.shape1:nth-child(5){
+	/* transform multiple properties at the same time */
+	transform: rotate(20deg) scale(0.8) skew(10deg, 40deg);
+
+	transition: all 2s;
+}
+
+.shape1:nth-child(5):hover{
+	transform: rotate(270deg) scale(2.3) skew(50deg, -25deg);
 }
 
